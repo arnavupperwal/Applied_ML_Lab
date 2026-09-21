@@ -1,44 +1,25 @@
 # Exp 8: Credit Risk Assessment
 
 ## 🎯 Objective & Overview
-Credit scoring model using historical financial data.
+Build a credit scoring classification model to assess credit risk and predict default probability using historical financial applicant data.
 
 ---
 
-## 📁 Directory Structure
+## 📁 Current Directory Structure & Status
 ```text
 EXP_8_Credit_Risk_Assessment/
-├── README.md                  # Experiment documentation
-├── Dataset/                   # Experiment datasets split by set
-│   ├── Training/              # Training dataset split
-│   ├── Validation/            # Validation dataset split
-│   └── Test/                  # Test dataset split
-└── scripts/                   # Reusable preprocessing & model scripts
-    └── preprocess.py          # Data preprocessing pipeline script
+├── README.md                          # Experiment documentation
+├── Dataset/                           # Data directory
+│   ├── Training/                      # Training dataset split directory
+│   ├── Validation/                    # Validation dataset split directory
+│   └── Test/                          # Test dataset split directory
+└── scripts/                           # Scripts directory
+    └── preprocess.py                  # Preprocessing wrapper script
 ```
 
 ---
 
-## 📋 Task & Preprocessing Workflow (Whiteboard Guidelines)
-
-### 1. Dataset Preparation & Readme Update
-- Download / place the raw dataset into the `Dataset/` directory.
-- Document dataset schema, source, and column descriptions in this file (`README.md`).
-
-### 2. Preprocessing Steps
-Perform required preprocessing steps on raw data:
-- **Data Sampling**: Filter, sample, or balance dataset if needed.
-- **Cleaning & Wrangling**: Handle missing values, outliers, duplicate records, and invalid data types.
-- **Normalization / Scaling**: Apply StandardScaler, MinMaxScaler, or text vectorization.
-- **Dimensionality Reduction**: Apply feature selection, PCA, or relevant feature extraction.
-
-### 3. Train / Validation / Test Splitting
-- Partition dataset into **Training**, **Validation**, and **Test** sets.
-- Save output split datasets in `Dataset/Training/`, `Dataset/Validation/`, and `Dataset/Test/`.
-- Document final split ratios (e.g., 80% train, 10% validation, 10% test).
-
----
-
-## 💻 Coding Task
-- Implement preprocessing logic in `scripts/preprocess.py`.
-- Develop training, evaluation, and visualization models in standard notebooks or Python scripts within this directory.
+## 📊 Dataset & Workflow Information
+- **Status**: Workspace initialized with required directory layout. Credit scoring dataset (`bank_credit_scoring.csv` available in `archive (3).`) is ready to be placed in `Dataset/`.
+- **Target Task**: Binary Classification & Risk Scoring (Default vs. Non-Default).
+- **Scripts**: `scripts/preprocess.py` points to `../../scripts/preprocess_template.py` for handling missing values, encoding categorical variables, scaling numerical features, and train/val/test splitting.

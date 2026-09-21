@@ -1,0 +1,63 @@
+# Python virtual environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache / compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editor / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Secrets / env files
+.env
+.env.*
+*.env
+secrets.json
+credentials.json
+
+# Large data files
+*.csv
+*.tsv
+*.parquet
+*.xlsx
+*.xls
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+
+# Model / ML artifacts
+*.pkl
+*.joblib
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.bin
+*.onnx
+*.model
+
+# Logs / output folders
+logs/
+output/
+checkpoints/
+models/
+datasets/
+*.log

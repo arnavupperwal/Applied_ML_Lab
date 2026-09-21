@@ -1,44 +1,37 @@
 # Exp 3: Handwritten Digit Recognition
 
 ## 🎯 Objective & Overview
-Implement using MNIST dataset and neural network.
+Implement a classification model (e.g., Neural Network / CNN / Random Forest / SVM) using the MNIST dataset to recognize handwritten digits (0-9).
 
 ---
 
-## 📁 Directory Structure
+## 📁 Current Directory Structure & Status
 ```text
 EXP_3_Handwritten_Digit_Recognition/
-├── README.md                  # Experiment documentation
-├── Dataset/                   # Experiment datasets split by set
-│   ├── Training/              # Training dataset split
-│   ├── Validation/            # Validation dataset split
-│   └── Test/                  # Test dataset split
-└── scripts/                   # Reusable preprocessing & model scripts
-    └── preprocess.py          # Data preprocessing pipeline script
+├── README.md                          # Experiment documentation
+├── Dataset/                           # Data directory
+│   ├── Training/train.csv             # Preprocessed Training split (29,400 samples, 155 columns)
+│   ├── Validation/val.csv             # Preprocessed Validation split (4,200 samples, 155 columns)
+│   └── Test/test.csv                  # Preprocessed Test split (8,400 samples, 155 columns)
+└── scripts/                           # Scripts directory
+    └── preprocess.py                  # Preprocessing wrapper script
 ```
 
 ---
 
-## 📋 Task & Preprocessing Workflow (Whiteboard Guidelines)
-
-### 1. Dataset Preparation & Readme Update
-- Download / place the raw dataset into the `Dataset/` directory.
-- Document dataset schema, source, and column descriptions in this file (`README.md`).
-
-### 2. Preprocessing Steps
-Perform required preprocessing steps on raw data:
-- **Data Sampling**: Filter, sample, or balance dataset if needed.
-- **Cleaning & Wrangling**: Handle missing values, outliers, duplicate records, and invalid data types.
-- **Normalization / Scaling**: Apply StandardScaler, MinMaxScaler, or text vectorization.
-- **Dimensionality Reduction**: Apply feature selection, PCA, or relevant feature extraction.
-
-### 3. Train / Validation / Test Splitting
-- Partition dataset into **Training**, **Validation**, and **Test** sets.
-- Save output split datasets in `Dataset/Training/`, `Dataset/Validation/`, and `Dataset/Test/`.
-- Document final split ratios (e.g., 80% train, 10% validation, 10% test).
+## 📊 Dataset Information
+- **Raw Input**: MNIST `train.csv` (42,000 records, 785 columns: `label` + 784 pixels).
+- **Features**: `label` (Target digit 0-9), `pixel0` through `pixel783` (784 pixel features).
+- **Preprocessed Splits (70% / 10% / 20%)**:
+  - **Training set**: `Dataset/Training/train.csv` (29,400 records, 155 columns)
+  - **Validation set**: `Dataset/Validation/val.csv` (4,200 records, 155 columns)
+  - **Test set**: `Dataset/Test/test.csv` (8,400 records, 155 columns)
 
 ---
 
-## 💻 Coding Task
-- Implement preprocessing logic in `scripts/preprocess.py`.
-- Develop training, evaluation, and visualization models in standard notebooks or Python scripts within this directory.
+## 🛠 Preprocessing & Scripts Workflow
+- **Preprocessing Pipeline (`scripts/preprocess.py`)**:
+  - Calls `auto_preprocess` from `../../scripts/preprocess_template.py`.
+  - **Data Normalization**: `MinMaxScaler` applied to scale pixel intensities [0, 255] -> [0, 1].
+  - **Data Reduction**: `PCA` dimensionality reduction applied to 708 active pixel features, retaining 154 principal components (95.04% explained variance).
+  - **Splitting**: Stratified 70/10/20 train/val/test export.

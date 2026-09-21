@@ -1,44 +1,41 @@
 # Exp 2: Iris Flower Classification
 
 ## 🎯 Objective & Overview
-Build a classification model predicting species of iris flowers.
+Build a classification model predicting the species of iris flowers based on sepal and petal measurements.
 
 ---
 
-## 📁 Directory Structure
+## 📁 Current Directory Structure & Status
 ```text
 EXP_2_Iris_Flower_Classification/
-├── README.md                  # Experiment documentation
-├── Dataset/                   # Experiment datasets split by set
-│   ├── Training/              # Training dataset split
-│   ├── Validation/            # Validation dataset split
-│   └── Test/                  # Test dataset split
-└── scripts/                   # Reusable preprocessing & model scripts
-    └── preprocess.py          # Data preprocessing pipeline script
+├── README.md                          # Experiment documentation
+├── Dataset/                           # Data directory
+│   ├── IRIS.csv                       # Raw dataset (150 rows, 5 columns)
+│   ├── Training/train.csv             # Preprocessed Training split (102 samples, 5 columns)
+│   ├── Validation/val.csv             # Preprocessed Validation split (15 samples, 5 columns)
+│   └── Test/test.csv                  # Preprocessed Test split (30 samples, 5 columns)
+└── scripts/                           # Scripts directory
+    └── preprocess.py                  # Preprocessing wrapper script
 ```
 
 ---
 
-## 📋 Task & Preprocessing Workflow (Whiteboard Guidelines)
-
-### 1. Dataset Preparation & Readme Update
-- Download / place the raw dataset into the `Dataset/` directory.
-- Document dataset schema, source, and column descriptions in this file (`README.md`).
-
-### 2. Preprocessing Steps
-Perform required preprocessing steps on raw data:
-- **Data Sampling**: Filter, sample, or balance dataset if needed.
-- **Cleaning & Wrangling**: Handle missing values, outliers, duplicate records, and invalid data types.
-- **Normalization / Scaling**: Apply StandardScaler, MinMaxScaler, or text vectorization.
-- **Dimensionality Reduction**: Apply feature selection, PCA, or relevant feature extraction.
-
-### 3. Train / Validation / Test Splitting
-- Partition dataset into **Training**, **Validation**, and **Test** sets.
-- Save output split datasets in `Dataset/Training/`, `Dataset/Validation/`, and `Dataset/Test/`.
-- Document final split ratios (e.g., 80% train, 10% validation, 10% test).
+## 📊 Dataset Information
+- **Raw File**: `Dataset/IRIS.csv` (150 records, 5 attributes)
+- **Features**: `sepal_length`, `sepal_width`, `petal_length`, `petal_width`
+- **Target Variable**: `species` (`Iris-setosa` -> 0, `Iris-versicolor` -> 1, `Iris-virginica` -> 2)
+- **Preprocessed Splits (70% / 10% / 20%)**:
+  - **Cleaned Dataset**: 147 unique records (3 duplicate rows automatically detected and removed).
+  - **Training set**: `Dataset/Training/train.csv` (102 records)
+  - **Validation set**: `Dataset/Validation/val.csv` (15 records)
+  - **Test set**: `Dataset/Test/test.csv` (30 records)
 
 ---
 
-## 💻 Coding Task
-- Implement preprocessing logic in `scripts/preprocess.py`.
-- Develop training, evaluation, and visualization models in standard notebooks or Python scripts within this directory.
+## 🛠 Preprocessing & Scripts Workflow
+- **Preprocessing Pipeline (`scripts/preprocess.py`)**:
+  - Calls `auto_preprocess` from `../../scripts/preprocess_template.py`.
+  - **Data Cleaning**: Automatically detected and dropped 3 duplicate rows.
+  - **Data Wrangling**: Encoded target `species` using `LabelEncoder`.
+  - **Data Normalization**: Scaled 4 numerical flower measurements using `StandardScaler`.
+  - **Splitting**: Stratified 70/10/20 train/val/test export.

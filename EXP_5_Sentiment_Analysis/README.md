@@ -1,44 +1,41 @@
 # Exp 5: Sentiment Analysis
 
 ## 🎯 Objective & Overview
-Tool classifying reviews using NLP techniques.
+Build a Natural Language Processing (NLP) classification model to analyze text reviews/tweets and categorize their sentiment (Positive, Negative, Neutral).
 
 ---
 
-## 📁 Directory Structure
+## 📁 Current Directory Structure & Status
 ```text
 EXP_5_Sentiment_Analysis/
-├── README.md                  # Experiment documentation
-├── Dataset/                   # Experiment datasets split by set
-│   ├── Training/              # Training dataset split
-│   ├── Validation/            # Validation dataset split
-│   └── Test/                  # Test dataset split
-└── scripts/                   # Reusable preprocessing & model scripts
-    └── preprocess.py          # Data preprocessing pipeline script
+├── README.md                          # Experiment documentation
+├── Dataset/                           # Data directory
+│   ├── sentiment_analysis.csv         # Raw dataset (499 rows, 7 columns)
+│   ├── Training/train.csv             # Preprocessed Training split (275 samples, 60 columns)
+│   ├── Validation/val.csv             # Preprocessed Validation split (40 samples, 60 columns)
+│   └── Test/test.csv                  # Preprocessed Test split (79 samples, 60 columns)
+└── scripts/                           # Scripts directory
+    └── preprocess.py                  # Preprocessing wrapper script
 ```
 
 ---
 
-## 📋 Task & Preprocessing Workflow (Whiteboard Guidelines)
-
-### 1. Dataset Preparation & Readme Update
-- Download / place the raw dataset into the `Dataset/` directory.
-- Document dataset schema, source, and column descriptions in this file (`README.md`).
-
-### 2. Preprocessing Steps
-Perform required preprocessing steps on raw data:
-- **Data Sampling**: Filter, sample, or balance dataset if needed.
-- **Cleaning & Wrangling**: Handle missing values, outliers, duplicate records, and invalid data types.
-- **Normalization / Scaling**: Apply StandardScaler, MinMaxScaler, or text vectorization.
-- **Dimensionality Reduction**: Apply feature selection, PCA, or relevant feature extraction.
-
-### 3. Train / Validation / Test Splitting
-- Partition dataset into **Training**, **Validation**, and **Test** sets.
-- Save output split datasets in `Dataset/Training/`, `Dataset/Validation/`, and `Dataset/Test/`.
-- Document final split ratios (e.g., 80% train, 10% validation, 10% test).
+## 📊 Dataset Information
+- **Raw File**: `Dataset/sentiment_analysis.csv` (499 records, 7 attributes)
+- **Target Variable**: `sentiment` (`negative` -> 0, `neutral` -> 1, `positive` -> 2)
+- **Features**: `Year`, `Month`, `Day`, `Time of Tweet`, `text` (Input text), `Platform`.
+- **Preprocessed Splits (70% / 10% / 20%)**:
+  - **Cleaned Dataset**: 394 unique records (105 duplicate rows automatically detected and removed).
+  - **Training set**: `Dataset/Training/train.csv` (275 records, 60 columns)
+  - **Validation set**: `Dataset/Validation/val.csv` (40 records, 60 columns)
+  - **Test set**: `Dataset/Test/test.csv` (79 records, 60 columns)
 
 ---
 
-## 💻 Coding Task
-- Implement preprocessing logic in `scripts/preprocess.py`.
-- Develop training, evaluation, and visualization models in standard notebooks or Python scripts within this directory.
+## 🛠 Preprocessing & Scripts Workflow
+- **Preprocessing Pipeline (`scripts/preprocess.py`)**:
+  - Calls `auto_preprocess` from `../../scripts/preprocess_template.py`.
+  - **Data Cleaning**: Automatically detected and removed 105 duplicate rows.
+  - **Data Wrangling**: Encoded target `sentiment` using `LabelEncoder`, performed text cleaning and extracted 50 TF-IDF numerical features from `text`, and One-Hot encoded categorical metadata (`Time of Tweet`, `Platform`).
+  - **Data Normalization**: `StandardScaler` applied to all feature columns.
+  - **Splitting**: Stratified 70/10/20 train/val/test export.
